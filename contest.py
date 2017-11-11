@@ -1,5 +1,10 @@
 import uuid
 import json
+import os
+
+# setup config
+UPLOAD_FOLDER = '/images'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 def get_contests():
     result = {'contests':[]}
@@ -54,8 +59,12 @@ def add_new_contest(contest_json):
     return "Data successfully added."
 
 def add_new_entry(entry_json, entry_file):
+    file_name = ""
     # save the file
-    
+    if entry_file:
+        file_extension = (entry_file.split('.'))[1]
+        file_name = str(uuid.uuid4()) + '.' + file_extension
+        entry_file.save(os.path.join(UPLOAD_FOLDER, file_name))
     # first read the info from the existing file
     json_data = {}
     try:
@@ -66,3 +75,8 @@ def add_new_entry(entry_json, entry_file):
     # Then add the new entry data to the json data
     new_data = {}
     new_data['id'] = str(uuid.uuid4())
+    new_data['contest-id'] = entry_json['contest']
+    new_data['user-id'] = entry_json['user']
+    new_data['image-name'] = file_name
+    json_data['entries'] += [new_data]
+    return "Data successfully added."

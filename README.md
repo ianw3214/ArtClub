@@ -53,9 +53,11 @@ Note that json data is expected in an http POST request, in the form of the foll
 Use *entry/new/* to add a new entry, e.g. 34.230.29.192:5000/entry/new/
 
 Note that json data is expected in an http POST request, as well as an image file:
+The *contest* and *user* fields are the IDs of the contest and user of the entry
 
 ```json
 {
-
+    "contest" : "...",
+    "user" : "..."
 }
 ```

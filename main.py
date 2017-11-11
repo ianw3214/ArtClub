@@ -4,9 +4,6 @@ import contest
 import json
 APP = Flask(__name__)
 
-# setup config
-UPLOAD_FOLER = '/images'
-
 @APP.route('/')
 def nothing():
     """
