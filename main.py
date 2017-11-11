@@ -36,6 +36,13 @@ def new_contest():
         return "No data read..."
     return contest.add_new_contest(json.dumps(request.json))
 
+@APP.route('/entry/')
+def entry_request():
+    """
+    Returns information about all entries
+    """
+    return jsonify(contest.get_entries())
+
 @APP.route('/entry/new/', methods=['POST'])
 def new_entry():
     """

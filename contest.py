@@ -58,6 +58,22 @@ def add_new_contest(contest_json):
         contest_data.write(json_data)
     return "Data successfully added."
 
+def get_entries():
+    result = {'entries': []}
+    try:
+        with open("entries.json") as entry_data:
+            entries = json.load(entry_data)
+            for entry in entries['entries']:
+                data = {}
+                data['id'] = entry['id']
+                data['contest'] = entry['contest-id']
+                data['user'] = entry['user-id']
+                data['image'] = entry['image-name']
+                result['entries'] += [data]
+    except FileNotFoundError:
+        open('entries.json', 'w+')
+    return result
+
 def add_new_entry(entry_json, entry_file):
     file_name = ""
     # save the file
