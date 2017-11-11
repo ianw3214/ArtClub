@@ -1,0 +1,33 @@
+html {
+  background: url(artwork.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+div.container {
+top: 50%;
+left: 50%;
+}
+
+#footer {
+  background:black;
+  text-align: center;
+  padding: 5px 20px;
+  color:white;
+}
+
+#footer a {
+  margin: 0 50px;
+}
+
+#footer a:visited {
+	text-decoration:none;
+	color:white;
+}
+
+#footer a:hover {
+	text-decoration:underline;
+	color:gray;
+}

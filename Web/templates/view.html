@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Contests</title>
+  <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1> <center>Contests</center> </h1>
+    <p id = "entry"></p>
+
+    <script>
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("entry").innerHTML = this.responseText;
+          console.log(this.responseText)
+        }
+      };
+
+      xhttp.open("GET", "http://34.230.29.192:5000/contests/");
+      var text = xhttp.send();
+      obj = JSON.parse(text);
+      document.getElementById("entry").innerHTML =
+      obj.contests[0].description + " " + obj.contests[0].name;
+    </script>
+
+  </body>
+</html>
