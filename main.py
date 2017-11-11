@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import jsonify, request
+from flask import jsonify, request, send_file
 from flask_cors import CORS
 import contest
 import json
@@ -46,6 +46,13 @@ def new_entry():
     if 'entryFile' not in request.files:
         return "No file found..."
     return contest.add_new_entry(json.dumps(request.json), request.files['entryFile'])
+
+@APP.route('/image/<path>')
+def get_image(path):
+    """
+    Returns the image file at a specified path
+    """
+    return send_file('images/' + path, mimetype='image/gif')
 
 if __name__ == '__main__':
     APP.run()
