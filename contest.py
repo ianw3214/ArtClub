@@ -80,3 +80,31 @@ def add_new_entry(entry_json, entry_file):
     new_data['image-name'] = file_name
     json_data['entries'] += [new_data]
     return "Data successfully added."
+
+def get_users():
+    result = {'users': []}
+    try:
+        with open("users.json") as user_data:
+            users = json.load(user_data)
+            for user in users['users']:
+                data = {}
+                data['name'] = user['name']
+                data['id'] = user['id']
+                result['users'] += [data]
+    except FileNotFoundError:
+        open('users.json', 'w+')
+    return result
+
+
+def get_user_detail(user_id):
+    result = {}
+    try:
+        with open("users.json") as user_data:
+            users = json.load(user_data)
+            for user in users['users']:
+                if user['id'] == user_id:
+                    result['name'] = user['name']
+                    result['id'] = user['id']
+    except FileNotFoundError:
+        open('users.json', 'w+')
+    return result

@@ -23,7 +23,7 @@ def contest_request():
 @APP.route('/contests/<req_contest>')
 def contest_detail_request(req_contest):
     """
-    Return the list of contest information
+    Returns data about a specific contest
     """
     return jsonify(contest.get_contest_detail(req_contest))
 
@@ -53,6 +53,20 @@ def get_image(path):
     Returns the image file at a specified path
     """
     return send_file('images/' + path, mimetype='image/gif')
+
+@APP.route('/users/')
+def users_request():
+    """
+    Returns the list of users
+    """
+    return jsonify(contest.get_users())
+
+@APP.route('/users/<req_user>')
+def user_detail_request(req_user):
+    """
+    Returns data about a specific user
+    """
+    return jsonify(contest.get_user_detail(req_user))
 
 if __name__ == '__main__':
     APP.run()
