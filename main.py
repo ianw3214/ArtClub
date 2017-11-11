@@ -1,8 +1,10 @@
 from flask import Flask
 from flask import jsonify, request
+from flask_cors import CORS
 import contest
 import json
 APP = Flask(__name__)
+CORS(APP)
 
 @APP.route('/')
 def nothing():
