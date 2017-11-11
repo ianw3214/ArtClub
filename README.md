@@ -61,3 +61,7 @@ The *contest* and *user* fields are the IDs of the contest and user of the entry
     "user" : "..."
 }
 ```
+
+To get the actual image data, use the *image/<path>* path to request the image with the specified name.
+
+For example, 34.230.29.192:5000/image/test.png will return the red test rectangle.
