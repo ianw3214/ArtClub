@@ -3,26 +3,81 @@
   <head>
   <title>Contests</title>
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="../resources/view.css">
   </head>
   <body>
-    <h1> <center>Contests</center> </h1>
-    <p id = "entry"></p>
+    <div id = "header">
+    <div id = "home"><a href="artopening.html">Back to Home</a></div>
+    <div id = "view"><a href="sponser.html">Make a Contest</a></div>
+    </div>
+    <h1 id="h1"> <center>Contests</center> </h1>
+    <p id = "container"></p>
 
+<!-- This is for all the contests and how they all show up with the buttons attached -->
     <script>
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("entry").innerHTML = this.responseText;
-          console.log(this.responseText)
+          var arr = JSON.parse(this.responseText);
+          for (i = 0; i < arr.contests.length; i++) {
+            console.log(arr.contests[0].id);
+            document.getElementById("container").innerHTML = document.getElementById("container").innerHTML +
+            "<div class=event>"+"<div class=name>"+arr.contests[i].name + "</div> " +"<div class=description"+i+">"+
+            arr.contests[i].description +"</div> "+ "<div class=reward"+i+">"+arr.contests[i].reward+"</div></div>"+
+            "<input type=\"submit\" value=\"Look at Contest\" onclick=\"functclick(\'"+arr.contests[i].id+"\')\"></input><br>";
+          }
+          console.log(document.getElementById("container").innerHTML);
         }
       };
 
       xhttp.open("GET", "http://34.230.29.192:5000/contests/");
-      var text = xhttp.send();
-      obj = JSON.parse(text);
-      document.getElementById("entry").innerHTML =
-      obj.contests[0].description + " " + obj.contests[0].name;
-    </script>
+      xhttp.send();
 
+      //This function happens when you click a button for a contest and it deletes the page and brings up a new page that is filled with the entires for each contest
+      function functclick(id) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            var arr = JSON.parse(this.responseText);
+            document.getElementById("container").innerHTML ="<div id=contestdes>"+ arr.description+ "</div>" +"<h1 id= contestname>"+arr.name+"</h1>" +
+            "<div id = contestreward>"+arr.reward+"</div>";
+            for (i = 0; i < arr.entries.length; i++) {
+              document.getElementById("container").innerHTML = document.getElementById("container").innerHTML +
+              "<div id=entry>"+arr.entries[i] + "</div> " +
+              "<input type = \"submit\" value = \"Rate Entry\" id =count></input><br>";
+            }
+            document.getElementById("entriess").innerHTML="<input type = \"submit\" value = \"+1\" onclick = \"rate(document.getElementById('entry'))\"></input>"
+            console.log(document.getElementById("container").innerHTML)
+            document.getElementById("make").innerHTML="<input type = \"submit\" value = \"Make New Entry\" onclick = \"newentry(document.getElementById('contestname'))\"></input>"
+          }
+        };
+
+        xhttp.open("GET", "http://34.230.29.192:5000/contests/"+id);
+        xhttp.send();
+        console.log(id);
+
+      }
+
+      function rate(contestname) {
+        var count = 0;
+        count = count + 1;
+        console.log(count);
+      }
+
+      function newentry(contestname) {
+        var contest = document.getElementById("contestname").innerHTML;
+        var user = "guest";
+        var x = {"contest":contest,"user":user};
+        x = JSON.stringify(x);
+        console.log(x);
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "http://34.230.29.192:5000/entry/new/", true);
+        xhttp.setRequestHeader("Content-type","application/json");
+        xhttp.send(x);
+        
+      }
+    </script>
+    <div id = "entriess"></div>
+    <div id = "make"></div>
   </body>
 </html>

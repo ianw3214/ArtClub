@@ -3,19 +3,19 @@ html {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: 2000px 1500px;
 }
 
 div.container {
-top: 50%;
-left: 50%;
+  position: absolute;
+  top: 350px;
+  left: 750px;
 }
 
 #footer {
-  background:black;
   text-align: center;
   padding: 5px 20px;
-  color:white;
+  color:black;
 }
 
 #footer a {
@@ -23,11 +23,42 @@ left: 50%;
 }
 
 #footer a:visited {
-	text-decoration:none;
-	color:white;
+	color:black;
 }
 
 #footer a:hover {
-	text-decoration:underline;
 	color:gray;
+}
+
+#sponser {
+  position: fixed;
+  top: 70%;
+  left: 25%;
+  display: flex;
+  border-style: solid;
+  border-color: blue;
+  border-width: thick;
+  background-color: orange;
+  color: pink;
+  font-size: 15px;
+}
+#view {
+  position: fixed;
+  top: 70%;
+  left: 65%;
+  display: flex;
+  border-style: solid;
+  border-color: green;
+  border-width: thick;
+  background-color: orange;
+  color: pink;
+  font-size: 15px;
+}
+
+#hand {
+  position: absolute;
+  height: 300px;
+  width: 590px;
+  left: 900px;
+  top: 200px;
 }

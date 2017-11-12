@@ -1,0 +1,42 @@
+#header {
+  text-align: center;
+  padding: 5px 20px;
+  color:black;
+}
+
+#home {
+  position: absolute;
+  top: 1%;
+  left: 5%;
+  font-size: 15px;
+}
+#view {
+  position: absolute;
+  top: 1%;
+  left: 90%;
+  font-size: 15px;
+}
+#header a:visited {
+	color:black;
+}
+
+#header a:hover {
+	color:gray;
+}
+
+
+.name {
+
+}
+
+.description {
+
+}
+
+.reward {
+
+}
+
+.event {
+  display: inline-block;
+}

@@ -1,4 +1,44 @@
 h1{
   top:50%;
   left:50%;
+  color: white;
+}
+
+html {
+  background: url(sponserback.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 2000px 1500px;
+}
+
+center {
+  color: white;
+}
+
+
+#header {
+  text-align: center;
+  padding: 5px 20px;
+  color:white;
+}
+
+#home {
+  position: absolute;
+  top: 1%;
+  left: 5%;
+  font-size: 15px;
+}
+#view {
+  position: absolute;
+  top: 1%;
+  left: 90%;
+  font-size: 15px;
+}
+#header a:visited {
+	color:white;
+}
+
+#header a:hover {
+	color:gray;
 }
