@@ -61,3 +61,56 @@ The *contest* and *user* fields are the IDs of the contest and user of the entry
     "user" : "..."
 }
 ```
+
+Use *users/* to get a list of all users, e.g. 34.230.29.192:5000/users/
+
+```json
+{
+    "users" : [
+        {
+            "name" : "test",
+            "id" : "f50ec0b7-f960-400d-91f0-c42a6d44e3k8"
+        }
+    ]
+}
+```
+
+Use the specific *ID* of a user to find more details about the user, e.g. 34.230.29.192:5000/users/f50ec0b7-f960-400d-91f0-c42a6d44e3k8
+
+```json
+{
+    "users" : [
+        {
+            "name" : "test",
+            "id" : "f50ec0b7-f960-400d-91f0-c42a6d44e3k8"
+        }
+    ]
+}
+```
+
+Use *entries/* to get a list of all entries, e.g. e.g. 34.230.29.192:5000/users/
+
+```json
+{
+    "entries": [
+        {
+            "id" : "bd65600d-8669-4903-8a14-af88203add39",
+            "contest-id" : "f50ec0b7-f960-400d-91f0-c42a6d44e3d0",
+            "user-id" : "f50ec0b7-f960-400d-91f0-c42a6d44e3k8",
+            "image-name" : "test.png"
+        }
+    ]
+}
+```
+
+***
+
+Use */entry/new/* with POST data and image data to add a new entry.
+
+The input JSON should have 2 fields, *contest* for contestID of entry and *user* for userID of entry.
+
+***
+
+To get the actual image data, use the *image/<path>* path to request the image with the specified name.
+
+For example, 34.230.29.192:5000/image/test.png will return the red test rectangle.
